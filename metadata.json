@@ -1,0 +1,12 @@
+{
+  "name": "Splice",
+  "type": "assessment",
+  "properties": {
+    "type": "splice",
+    "icon": "./icon.svg",
+    "gradingControls": {
+      "points": true,
+      "useMaximumScore": true
+    }
+  }
+}
