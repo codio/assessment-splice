@@ -136,9 +136,17 @@
     }
   }
 
+  const getSpliceData = (data) => {
+    if (!data?.subject) {
+      return null
+    }
+    const {subject, ...rest} = data
+    return {method: subject, data: {...rest}}
+  }
+
   const processMessage = (jsonData) => {
     try {
-      const {method, data} = JSON.parse(jsonData)
+      const {method, data} = getSpliceData(jsonData) || JSON.parse(jsonData)
       console.log('assessment iframe processMessage', jsonData, method, data)
       switch (method) {
         case window.codioAssessmentsHelper.METHODS.GET_STYLES_RESPONSE:
