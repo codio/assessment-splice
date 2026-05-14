@@ -55,7 +55,7 @@
 
   const sendToIframe = (method, message) => {
     const iframe = $('.codio-assessment-splice-iframe')
-    iframe.contentWindow.postMessage({subject: method, ...message}, '*')
+    iframe[0].contentWindow.postMessage({subject: method, ...message}, '*')
   }
 
   const getStateObj = () => {
