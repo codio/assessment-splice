@@ -1,8 +1,13 @@
 (function () {
   const collectSettings = () => {
+    const errors = []
     const instructions = $('#instructions').val()
     const url = $('#url').val()
-    return {instructions, url};
+
+    !instructions && errors.push('Instructions field must be completed');
+    !url && errors.push('Assessment URL field must be completed');
+
+    return {data: {instructions, url}, errors};
   }
 
   const exportSettings = () => {
