@@ -1,7 +1,9 @@
 (function () {
+  let instructionsEditor = null
+
   const collectSettings = () => {
     const errors = []
-    const instructions = $('#instructions').val()
+    const instructions = instructionsEditor.getContent()
     const url = $('#url').val()
 
     !instructions && errors.push('Instructions field must be completed');
@@ -16,7 +18,7 @@
   }
 
   const applySettings = (settings = {}) => {
-    $('#instructions').val(settings.instructions || '');
+    instructionsEditor.setContent(settings.instructions || '')
     $('#url').val(settings.url || '');
   }
 
@@ -38,6 +40,7 @@
   const onLoad = async () => {
     window.codioAssessmentsHelper.registerMessageListener(processMessage)
     window.codioAssessmentsHelper.send(window.codioAssessmentsHelper.METHODS.GET_SETTINGS)
+    instructionsEditor = window.codioAssessmentsHelper.initializeMarkdownEditor('instructions', 'instructions-command-bar')
   }
 
   window.addEventListener('load', onLoad);
